@@ -1,0 +1,46 @@
+id: PHY-001
+title: Bead on a spinning hoop, oscillation about the tilted equilibrium
+domain: classical mechanics
+difficulty: 3   # 1 (routine) .. 5 (research-level)
+statement: |
+  A small bead of mass $m$ slides without friction on a rigid circular hoop of radius $R$.
+  The hoop is driven to rotate at constant angular speed $\omega$ about its vertical diameter,
+  in uniform gravity $g$. Assume $\omega^2 > g/R$.
+
+  The bead has an equilibrium (in the rotating frame) away from the bottom of the hoop.
+  Find the angular frequency $\Omega$ of small oscillations of the bead about that equilibrium,
+  in terms of $\omega$, $g$ and $R$.
+answer:
+  type: symbolic
+  expr: sqrt(w**2 - g**2/(R**2*w**2))
+  symbols:
+    w: {range: [1, 10]}
+    g: {range: [1, 20]}
+    R: {range: [0.2, 3]}
+  constraints: ["w**2*R - g"]
+  units: {w: 1/s, g: m/s^2, R: m}
+  answer_unit: 1/s
+  aliases: {omega: w}
+solution_sketch: |
+  With polar angle $\theta$ from the downward vertical, $L = \tfrac12 mR^2(\dot\theta^2 + \omega^2\sin^2\theta) + mgR\cos\theta$.
+  Equation of motion: $\ddot\theta = \omega^2\sin\theta\cos\theta - (g/R)\sin\theta$.
+  Equilibrium: $\cos\theta_0 = g/(R\omega^2)$. Linearising,
+  $\Omega^2 = \omega^2\sin^2\theta_0 = \omega^2 - g^2/(R^2\omega^2)$.
+rubric:
+  - id: lagrangian
+    points: 2
+    criterion: Writes a correct Lagrangian or effective potential including the centrifugal term $\tfrac12 mR^2\omega^2\sin^2\theta$.
+  - id: equilibrium
+    points: 2
+    criterion: Finds the off-axis equilibrium $\cos\theta_0 = g/(R\omega^2)$ and notes it exists only for $\omega^2 > g/R$.
+  - id: linearise
+    points: 3
+    criterion: Linearises about $\theta_0$ correctly (second derivative of the effective potential, or expansion of the equation of motion), not about $\theta = 0$.
+  - id: final
+    points: 3
+    auto: final_answer
+    criterion: Final answer equivalent to $\Omega = \sqrt{\omega^2 - g^2/(R^2\omega^2)}$.
+common_errors:
+  - Linearising about the bottom of the hoop, giving $\sqrt{g/R - \omega^2}$ (imaginary in this regime).
+  - Dropping the $\cos^2\theta_0$ term and reporting $\Omega = \omega$.
+  - Sign error in the centrifugal potential, which moves the equilibrium to the wrong side.

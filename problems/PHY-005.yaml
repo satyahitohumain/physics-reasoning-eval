@@ -1,0 +1,45 @@
+id: PHY-005
+title: Radial kick to a circular orbit
+domain: classical mechanics
+difficulty: 2
+statement: |
+  A satellite is on a circular orbit of radius $r_0$ around a planet of mass $M$
+  (gravitational constant $G$). An engine burn gives it a small extra velocity $\delta v$
+  directed radially outward, without changing its tangential velocity.
+
+  To first order in $\delta v$, find the difference $r_{\max} - r_{\min}$ between the largest
+  and smallest distances from the planet on the new orbit.
+answer:
+  type: symbolic
+  expr: 2*dv*sqrt(r0**3/(G*M))
+  symbols:
+    dv: {range: [0.001, 0.01]}
+    r0: {range: [0.5, 5]}
+    G: {range: [0.5, 2]}
+    M: {range: [0.5, 5]}
+  units: {dv: m/s, r0: m, G: m^3/(kg*s^2), M: kg}
+  answer_unit: m
+  aliases: {delta_v: dv, deltav: dv, v: dv, r_0: r0}
+solution_sketch: |
+  Angular momentum is unchanged, so the effective potential is unchanged and the orbit
+  undergoes radial (epicyclic) oscillation about $r_0$ at frequency $\kappa$, which equals the
+  orbital frequency $n = \sqrt{GM/r_0^3}$ for a $1/r$ potential. Starting at $r_0$ with radial
+  speed $\delta v$, the amplitude is $\delta v/\kappa$, so $r_{\max} - r_{\min} = 2\,\delta v\sqrt{r_0^3/GM}$.
+  Equivalently the eccentricity is $e = \delta v/v_0$.
+rubric:
+  - id: conserved_L
+    points: 2
+    criterion: Notes that a radial kick leaves the angular momentum unchanged.
+  - id: epicycle
+    points: 3
+    criterion: Identifies the radial oscillation frequency (epicyclic frequency equal to the orbital frequency) or equivalently relates the eccentricity to $\delta v/v_0$.
+  - id: amplitude
+    points: 2
+    criterion: Gets amplitude $\delta v/\kappa$ (half the requested difference).
+  - id: final
+    points: 3
+    auto: final_answer
+    criterion: Final answer equivalent to $2\,\delta v\sqrt{r_0^3/GM}$.
+common_errors:
+  - Reporting the amplitude instead of the peak-to-peak difference (missing factor 2).
+  - Treating the kick as tangential, which changes the orbit asymmetrically and gives $4\,\delta v\sqrt{r_0^3/GM}$ for the difference.

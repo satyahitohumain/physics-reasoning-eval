@@ -1,0 +1,51 @@
+id: PHY-006
+title: Cylinder rolling inside a freely rotating drum
+domain: classical mechanics
+difficulty: 4
+statement: |
+  A thin-walled cylindrical drum of mass $M$ and radius $R$ (moment of inertia $MR^2$) can
+  rotate without friction about its fixed, horizontal symmetry axis. Inside it, a uniform
+  solid cylinder of mass $m$ and radius $r < R$ rolls without slipping on the inner surface,
+  with the axes parallel. Gravity $g$ acts downward. The whole system starts from rest with
+  the small cylinder slightly displaced from the bottom.
+
+  Find the period $\tau$ of small oscillations of the small cylinder about the bottom.
+answer:
+  type: symbolic
+  expr: 2*pi*sqrt((R - r)*(3*M + m)/(g*(2*M + m)))
+  symbols:
+    R: {range: [0.5, 3]}
+    r: {range: [0.05, 2]}
+    M: {range: [0.1, 10]}
+    m: {range: [0.1, 10]}
+    g: {range: [1, 20]}
+  constraints: ["R - r"]
+  units: {R: m, r: m, M: kg, m: kg, g: m/s^2}
+  answer_unit: s
+  aliases: {T: tau}
+solution_sketch: |
+  Let $\phi$ be the angle of the small cylinder's centre from the vertical, $\psi$ the drum angle
+  and $\chi$ the small cylinder's spin, with $a = R - r$. Rolling: $a\dot\phi - r\dot\chi = R\dot\psi$.
+  The drum angle is cyclic and its momentum is zero (start from rest), so
+  $R\dot\psi = m a\dot\phi/(2M+m)$. Substituting, $T = \tfrac12 m a^2\dot\phi^2\,(3M+m)/(2M+m)$,
+  $U \approx \tfrac12 m g a\phi^2$, hence $\tau = 2\pi\sqrt{a(3M+m)/(g(2M+m))}$.
+  Checks: $M\to\infty$ gives the fixed-surface result $2\pi\sqrt{3a/2g}$; $M\to 0$ gives the
+  simple pendulum $2\pi\sqrt{a/g}$, since a massless drum transmits no friction torque.
+rubric:
+  - id: constraint
+    points: 2
+    criterion: States the rolling constraint linking the small cylinder's spin, its centre's motion and the drum's rotation.
+  - id: conservation
+    points: 3
+    criterion: Uses conservation of the drum's angular momentum (cyclic coordinate) to eliminate the drum's motion, with zero initial value.
+  - id: effective_inertia
+    points: 2
+    criterion: Obtains the effective inertia factor $(3M+m)/(2M+m)$ multiplying $\tfrac12 m a^2\dot\phi^2$.
+  - id: final
+    points: 3
+    auto: final_answer
+    criterion: Final answer equivalent to $2\pi\sqrt{(R-r)(3M+m)/(g(2M+m))}$.
+common_errors:
+  - Treating the drum as fixed, giving $2\pi\sqrt{3(R-r)/2g}$.
+  - Using $R$ instead of $R - r$ as the radius of the centre's path.
+  - Assuming the drum stays at rest because it starts at rest, ignoring the friction torque from the rolling contact.

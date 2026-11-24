@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "physeval"
+version = "0.1.0"
+description = "Original hard physics problems with rubrics and a verifiable grader for LLM answers."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Satish (Siyaramji Tech Solutions)" }]
+dependencies = ["sympy>=1.12", "pyyaml>=6"]
+
+[project.optional-dependencies]
+verify = ["numpy>=1.24", "scipy>=1.10"]
+units = ["dimcheck @ git+https://github.com/satyahitohumain/dimcheck"]
+dev = ["pytest>=7", "numpy>=1.24", "scipy>=1.10"]
+
+[project.scripts]
+physeval = "physeval.cli:main"
+
+[tool.setuptools]
+packages = ["physeval"]
+
+[tool.pytest.ini_options]
+addopts = "--doctest-modules --ignore=examples"
+testpaths = ["tests", "physeval"]
+pythonpath = ["."]

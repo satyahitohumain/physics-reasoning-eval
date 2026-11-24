@@ -1,0 +1,36 @@
+id: PHY-003
+title: Schottky peak of a degenerate two-level system
+domain: statistical mechanics
+difficulty: 2
+statement: |
+  Each of $N$ independent systems has a non-degenerate ground level and an excited level at
+  energy $\Delta$ above it that is three-fold degenerate. The systems are in thermal equilibrium
+  at temperature $T$.
+
+  At what temperature is the heat capacity maximal? Give the dimensionless number
+  $k_B T_{\max}/\Delta$ to four significant figures.
+answer:
+  type: numeric
+  value: 0.3514952
+  rel_tol: 0.002
+solution_sketch: |
+  With $x = \Delta/k_BT$, $Z = 1 + 3e^{-x}$ and $C/Nk_B = 3x^2e^{-x}/(1+3e^{-x})^2$.
+  Setting $dC/dx = 0$ gives $x(1 - 3e^{-x}) = 2(1 + 3e^{-x})$, i.e. $x = 2.84499$, so
+  $k_BT_{\max}/\Delta = 0.35150$ (peak $C/Nk_B = 1.0235$).
+rubric:
+  - id: partition
+    points: 2
+    criterion: Writes $Z = 1 + 3e^{-\Delta/k_BT}$ including the degeneracy.
+  - id: heat_capacity
+    points: 3
+    criterion: Derives $C/Nk_B = 3x^2e^{-x}/(1+3e^{-x})^2$ or an equivalent expression.
+  - id: transcendental
+    points: 2
+    criterion: Obtains the correct transcendental condition for the maximum, $x(1-3e^{-x}) = 2(1+3e^{-x})$ or equivalent.
+  - id: final
+    points: 3
+    auto: final_answer
+    criterion: Final answer $0.3515$ within 0.2%.
+common_errors:
+  - Ignoring the degeneracy, which gives the familiar non-degenerate value 0.4168.
+  - Placing the degeneracy on the ground level instead of the excited level.

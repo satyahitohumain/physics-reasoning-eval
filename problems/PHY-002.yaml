@@ -1,0 +1,44 @@
+id: PHY-002
+title: Gaussian variational bound for the linear V-shaped well
+domain: quantum mechanics
+difficulty: 3
+statement: |
+  A particle of mass $m$ moves in one dimension in the potential $V(x) = F\,|x|$ with $F > 0$.
+  Use a normalised Gaussian trial wavefunction $\psi_\sigma(x) \propto \exp(-x^2/4\sigma^2)$
+  with one variational parameter $\sigma$.
+
+  Find the resulting variational upper bound $E_{\mathrm{var}}$ on the ground-state energy,
+  in closed form in terms of $F$, $m$ and $\hbar$.
+answer:
+  type: symbolic
+  expr: Rational(3, 2)*(F**2*hbar**2/(2*pi*m))**Rational(1, 3)
+  symbols:
+    F: {range: [0.1, 5]}
+    hbar: {range: [0.1, 3]}
+    m: {range: [0.1, 5]}
+  units: {F: N, hbar: J*s, m: kg}
+  answer_unit: J
+solution_sketch: |
+  For this trial state $\langle x^2\rangle = \sigma^2$, $\langle T\rangle = \hbar^2/(8m\sigma^2)$ and
+  $\langle |x|\rangle = \sigma\sqrt{2/\pi}$. Minimising
+  $E(\sigma) = \hbar^2/(8m\sigma^2) + F\sigma\sqrt{2/\pi}$ gives
+  $E_{\mathrm{var}} = \tfrac32 (F^2\hbar^2/2\pi m)^{1/3} \approx 1.0242\,(\hbar^2F^2/2m)^{1/3}$,
+  about 0.5% above the exact value $|a_1'|(\hbar^2F^2/2m)^{1/3}$ with $|a_1'| = 1.01879$.
+rubric:
+  - id: kinetic
+    points: 2
+    criterion: Computes $\langle T\rangle = \hbar^2/(8m\sigma^2)$ for the stated width convention.
+  - id: potential
+    points: 2
+    criterion: Computes $\langle |x|\rangle = \sigma\sqrt{2/\pi}$.
+  - id: minimise
+    points: 3
+    criterion: Minimises $E(\sigma)$ correctly, finding $\sigma^3 = \hbar^2/(4mF\sqrt{2/\pi})$ or equivalent.
+  - id: final
+    points: 3
+    auto: final_answer
+    criterion: Final answer equivalent to $\tfrac32 (F^2\hbar^2/(2\pi m))^{1/3}$.
+common_errors:
+  - Using the width convention $e^{-x^2/2\sigma^2}$ partway through, which changes intermediate formulas.
+  - Computing $\langle x \rangle = 0$ instead of $\langle |x| \rangle$.
+  - Reporting the exact Airy-function energy instead of the variational bound asked for.

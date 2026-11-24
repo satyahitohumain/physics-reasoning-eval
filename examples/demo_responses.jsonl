@@ -1,0 +1,12 @@
+{"problem_id": "PHY-001", "model": "demo-careful", "response": "Effective potential $U=-mgR\\cos\\theta-\\tfrac12 mR^2\\omega^2\\sin^2\\theta$. Equilibrium $\\cos\\theta_0=g/R\\omega^2$. $U''(\\theta_0)=mR^2\\omega^2\\sin^2\\theta_0$, so\nFINAL ANSWER: \\omega\\sqrt{1-\\frac{g^2}{R^2\\omega^4}}"}
+{"problem_id": "PHY-001", "model": "demo-sloppy", "response": "Expanding about the bottom of the hoop gives Omega^2 = g/R - w^2.\nFINAL ANSWER: sqrt(g/R - w^2)"}
+{"problem_id": "PHY-002", "model": "demo-careful", "response": "$E(\\sigma)=\\hbar^2/8m\\sigma^2+F\\sigma\\sqrt{2/\\pi}$; minimising, $\\boxed{\\frac{3}{2}\\left(\\frac{F^2\\hbar^2}{2\\pi m}\\right)^{1/3}}$"}
+{"problem_id": "PHY-002", "model": "demo-sloppy", "response": "Using <|x|> = sigma and minimising...\nFINAL ANSWER: (3/2)*(F^2*hbar^2/(4*m))^(1/3)"}
+{"problem_id": "PHY-003", "model": "demo-careful", "response": "C/Nk = 3x^2 e^{-x}/(1+3e^{-x})^2, maximum at x = 2.845.\nFINAL ANSWER: k_B T/\\Delta \\approx 0.3515"}
+{"problem_id": "PHY-003", "model": "demo-sloppy", "response": "Standard Schottky anomaly: maximum at kT = 0.417 Delta.\nFINAL ANSWER: 0.4168"}
+{"problem_id": "PHY-004", "model": "demo-careful", "response": "Image -qa/d at a^2/d plus +qa/d at the centre.\nFINAL ANSWER: \\frac{q^2 a}{4\\pi\\varepsilon_0}\\left[\\frac{d}{(d^2-a^2)^2}-\\frac{1}{d^3}\\right]"}
+{"problem_id": "PHY-004", "model": "demo-sloppy", "response": "Image charge -qa/d at a^2/d.\nFINAL ANSWER: q^2 a d/(4 pi epsilon_0 (d^2-a^2)^2)"}
+{"problem_id": "PHY-006", "model": "demo-careful", "response": "Drum angular momentum is conserved and zero...\nFINAL ANSWER: 2\\pi\\sqrt{\\frac{(R-r)(3M+m)}{g(2M+m)}}"}
+{"problem_id": "PHY-006", "model": "demo-sloppy", "response": "Rolling on a fixed surface: KE = (3/4) m (R-r)^2 phidot^2.\nFINAL ANSWER: 2*pi*sqrt(3*(R-r)/(2*g))"}
+{"problem_id": "PHY-008", "model": "demo-careful", "response": "Only even n contribute; the series sums to pi^2/64.\nFINAL ANSWER: -\\frac{m a^2 V_0^2}{8\\pi^2\\hbar^2}"}
+{"problem_id": "PHY-008", "model": "demo-sloppy", "response": "Second-order shift is positive here.\nFINAL ANSWER: m a^2 V0^2/(8 pi^2 hbar^2) * meters"}

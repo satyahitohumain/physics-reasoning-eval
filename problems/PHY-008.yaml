@@ -1,0 +1,47 @@
+id: PHY-008
+title: Second-order shift from a half-well step
+domain: quantum mechanics
+difficulty: 4
+statement: |
+  A particle of mass $m$ is in an infinite square well on $0 < x < a$. A perturbation
+  $H' = V_0$ for $0 < x < a/2$ (and zero elsewhere in the well) is switched on.
+
+  Find the second-order perturbation-theory correction $E_1^{(2)}$ to the ground-state energy,
+  as an exact closed-form expression in $m$, $a$, $V_0$ and $\hbar$.
+answer:
+  type: symbolic
+  expr: -m*a**2*V0**2/(8*pi**2*hbar**2)
+  symbols:
+    m: {range: [0.1, 5]}
+    a: {range: [0.1, 5]}
+    V0: {range: [0.1, 5]}
+    hbar: {range: [0.1, 3]}
+  units: {m: kg, a: m, V0: J, hbar: J*s}
+  answer_unit: J
+  aliases: {V_0: V0}
+solution_sketch: |
+  $\langle n|H'|1\rangle = \frac{V_0}{\pi}\left[\frac{\sin((n-1)\pi/2)}{n-1} - \frac{\sin((n+1)\pi/2)}{n+1}\right]$,
+  which vanishes for odd $n \ne 1$ and equals $\pm\frac{2V_0}{\pi}\frac{n}{n^2-1}$ for even $n$.
+  Then $E_1^{(2)} = -\frac{8ma^2V_0^2}{\pi^4\hbar^2}\sum_{n\,\mathrm{even}}\frac{n^2}{(n^2-1)^3}$.
+  Partial fractions,
+  $\frac{n^2}{(n^2-1)^3} = \frac{1}{16}\left[\frac{1}{n+1}-\frac{1}{n-1}\right] + \frac{1}{16}\left[\frac{1}{(n+1)^2}+\frac{1}{(n-1)^2}\right] + \frac18\left[\frac{1}{(n-1)^3}-\frac{1}{(n+1)^3}\right]$,
+  turn the sum over even $n$ into $-\tfrac1{16} + (\tfrac{\pi^2}{64} - \tfrac1{16}) + \tfrac18 = \pi^2/64$, so
+  $E_1^{(2)} = -ma^2V_0^2/(8\pi^2\hbar^2)$.
+rubric:
+  - id: matrix_elements
+    points: 3
+    criterion: Computes $\langle n|H'|1\rangle$ correctly and identifies that only even $n$ contribute.
+  - id: series
+    points: 2
+    criterion: Sets up the second-order sum with correct energy denominators $E_1 - E_n$.
+  - id: closed_form
+    points: 2
+    criterion: Evaluates the series in closed form (e.g. by partial fractions and $\sum_{k\,\mathrm{odd}} 1/k^2 = \pi^2/8$), not just numerically.
+  - id: final
+    points: 3
+    auto: final_answer
+    criterion: Final answer equivalent to $-ma^2V_0^2/(8\pi^2\hbar^2)$.
+common_errors:
+  - Including odd $n$ terms, whose matrix elements vanish.
+  - Wrong sign (second-order ground-state shifts are always negative).
+  - Stopping at a truncated numerical sum.

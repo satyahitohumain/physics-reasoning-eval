@@ -1,0 +1,47 @@
+id: PHY-007
+title: Head-on inverse Compton backscattering
+domain: special relativity
+difficulty: 3
+statement: |
+  A photon of energy $E_0$ collides head-on with an electron (rest mass $m$) moving with speed
+  $\beta c$ toward it. The photon is scattered straight back, so it ends up travelling in the
+  electron's original direction of motion.
+
+  Find the energy $E_1$ of the scattered photon, exactly (no small-$E_0$ approximation),
+  in terms of $E_0$, $m$, $c$ and $\beta$.
+answer:
+  type: symbolic
+  expr: E0*m*c**2*(1 + beta)/sqrt(1 - beta**2) / (m*c**2*(1 - beta)/sqrt(1 - beta**2) + 2*E0)
+  symbols:
+    E0: {range: [0.01, 5]}
+    m: {range: [0.5, 3]}
+    c: {range: [0.5, 2]}
+    beta: {range: [0.0, 0.999]}
+  constraints: ["1 - beta"]
+  units: {E0: J, m: kg, c: m/s, beta: ""}
+  answer_unit: J
+  aliases: {E_0: E0, b: beta}
+  definitions: {gamma: 1/sqrt(1 - beta**2)}
+solution_sketch: |
+  Work in units with $c = 1$. From $(p_e + k - k')^2 = m^2$: $p_e\cdot k = p_e\cdot k' + k\cdot k'$, with
+  $p_e\cdot k = \gamma m E_0(1+\beta)$, $p_e\cdot k' = \gamma m E_1(1-\beta)$ and
+  $k\cdot k' = 2E_0E_1$. Restoring $c$,
+  $E_1 = \dfrac{\gamma m c^2 E_0(1+\beta)}{\gamma m c^2(1-\beta) + 2E_0}$.
+  For $E_0 \ll \gamma mc^2$ this tends to $E_0(1+\beta)/(1-\beta) \approx 4\gamma^2E_0$.
+rubric:
+  - id: invariants
+    points: 3
+    criterion: Uses four-momentum conservation with an invariant (e.g. squaring $p_e + k - k'$) rather than an approximate Doppler argument.
+  - id: dot_products
+    points: 3
+    criterion: Evaluates the three dot products with correct signs for head-on incidence and backward scattering.
+  - id: limit
+    points: 1
+    criterion: Checks a limit, e.g. the Thomson limit $4\gamma^2E_0$ or the electron-at-rest Compton formula at $\beta = 0$.
+  - id: final
+    points: 3
+    auto: final_answer
+    criterion: Final answer equivalent to the reference expression.
+common_errors:
+  - Giving only the Thomson-limit result $E_0(1+\beta)/(1-\beta)$.
+  - Sign errors in $p_e\cdot k$ that produce $(1-\beta)/(1+\beta)$ (a photon overtaking a receding electron).
